@@ -3,18 +3,22 @@ import time
 import subprocess
 
 Number = random.randrange(1, 100)
+
 lemonade_Buying_Price = 0.89
-Rainy = 0.76
+Rainy = 0.76                        #Set the Conditions
 Level = 1
+
 New_Price = "False"
 
 if Level == 1:
-    Money = 100
+    Money = 100 #Set the starting money, if this the first level
 
-usury_price_1 = 3.50
-usury_price_2 = 4.50
-usury_price_3 = 5.50
-Normal_Price = 2.50
+
+Normal_Price = lemonade_Buying_Price *2.8
+usury_price_1 = lemonade_Buying_Price *3.8       #Set the usury prices
+usury_price_2 = lemonade_Buying_Price *4.8
+usury_price_3 = lemonade_Buying_Price *5.8
+
 
 RED = "\033[31m"
 BLUE = "\033[34m"
