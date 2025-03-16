@@ -1,6 +1,5 @@
 import random
 import time
-import subprocess
 
 Number = random.randrange(1, 100)
 
@@ -11,17 +10,20 @@ Level = 1
 New_Price = "False"
 
 if Level == 1:
-    Money = 100 #Set the starting money, if this the first level
-
+    Money = 100     #Set the starting money, if this the first level
 
 Normal_Price = lemonade_Buying_Price *2.8
 usury_price_1 = lemonade_Buying_Price *3.8       #Set the usury prices
 usury_price_2 = lemonade_Buying_Price *4.8
 usury_price_3 = lemonade_Buying_Price *5.8
 
-
-RED = "\033[31m"
-BLUE = "\033[34m"   #Set the colors
+RED = '\033[91m'
+GREEN = '\033[92m'
+YELLOW = '\033[93m'
+BLUE = '\033[94m'           #Set the colors
+MAGENTA = '\033[95m'
+CYAN = '\033[96m'
+WHITE = '\033[97m'
 RESET = "\033[0m"
 
 if Number > 33 or Number == 33:
@@ -32,7 +34,6 @@ elif Number < 33:
 
 elif Number < 66:               #Set the weather
     Weather = "Rainy"
-
 while True:
     Number2 = random.randrange(0, 10)
     if Number2 < 1:
@@ -80,7 +81,7 @@ while True:
         profit = (float(lemonade_Selling_Price) - lemonade_Buying_Price) * customers
 
     elif lemonade_Selling_Price - lemonade_Buying_Price < usury_price_2:
-        customers = random.randrange(13, 68)
+        customers = random.randrange(13, 68)                                    # Genereate the customers, and the profit.
         profit = (float(lemonade_Selling_Price) - lemonade_Buying_Price) * customers
 
     elif lemonade_Selling_Price - lemonade_Buying_Price < usury_price_3:
@@ -92,7 +93,7 @@ while True:
         profit = (float(lemonade_Selling_Price) - lemonade_Buying_Price) * customers
 
     if Weather == "Rainy":
-        profit = profit * Rainy
+            profit = profit * Rainy
 
     New_Money = Money + profit
 
