@@ -21,12 +21,16 @@ usury_price_3 = lemonade_Buying_Price *5.8
 
 
 RED = "\033[31m"
-BLUE = "\033[34m"
+BLUE = "\033[34m"   #Set the colors
 RESET = "\033[0m"
 
-if Number > 50 or Number == 50:
+if Number > 33 or Number == 33:
     Weather = "Sunny"
-elif Number < 50:
+
+elif Number < 33:
+    Weather = "slightly cloudy"
+
+elif Number < 66:               #Set the weather
     Weather = "Rainy"
 
 while True:
@@ -49,8 +53,11 @@ while True:
 
     print(f"You can buy {BLUE}{Purchasable}{RESET} lemonades.")
     print("--------------------------------------------------")
-
-    lemonade_Buying_Crowd = int(input("How many lemonades do you want to buy: "))
+    try:
+        lemonade_Buying_Crowd = int(input("How many lemonades do you want to buy: "))
+    except ValueError:
+        print("Please enter a valid number.")
+        continue
 
     total_cost = lemonade_Buying_Crowd * lemonade_Buying_Price
     if total_cost > Money:
@@ -58,8 +65,11 @@ while True:
         continue
 
     Money -= total_cost
-
-    lemonade_Selling_Price = float(input("How much do you want to sell your Lemon for: "))
+    try:
+        lemonade_Selling_Price = float(input("How much do you want to sell your Lemon for: "))
+    except ValueError:
+        print("Please enter a valid number.")
+        continue
 
     if lemonade_Selling_Price - lemonade_Buying_Price < Normal_Price:
         customers = random.randrange(29, 129)
@@ -84,14 +94,15 @@ while True:
     if Weather == "Rainy":
         profit = profit * Rainy
 
+    New_Money = Money + profit
+
     print(f"------------------{RED}Invoice{RESET}-------------------")
     print(f"You sold {BLUE}{customers}{RESET} lemonades")
     print(f"Your profit is {BLUE}{profit}{RESET}")
     print(f"That was level {BLUE}{Level}{RESET}")
-    print(f"Your new account balance is {BLUE}{Money + profit}{RESET}")
+    print(f"Your new account balance is {BLUE}{New_Money}{RESET}")
     print("--------------------------------------------")
 
-    New_Money = Money + profit
     Level = Level + 1
     Money = int(New_Money)
     time.sleep(2)
