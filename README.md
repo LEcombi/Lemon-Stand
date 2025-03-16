@@ -16,6 +16,9 @@ The Game Saves automatically every time you finish a Level.
 
 If you want to load a saved game, just run the `start.py` file and type `yes` when asked for a command.
 
+## Use a Pre-made Game
+Copy and Paste the Game what you want to the root folder and rename it to `game.json`. Then run the `start.py` file and type `yes` when asked for a command.
+
 
 ## Upcoming features
 
