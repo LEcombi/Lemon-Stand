@@ -4,11 +4,13 @@ import os
 
 def set_weather():
     Number = random.randrange(1, 100)
-    if Number > 33 or Number == 33:
-        return "Sunny"
-    elif Number < 33:
-        return "slightly cloudy"
-    elif Number < 66:
+    if Number > 50 or Number == 50:
+        Number2 = random.randrange(1, 100)
+        if Number2 < 50:
+            return "Sunny"
+        elif Number2 < 50:
+            return "Slightly cloudy"
+    elif Number < 50:
         return "Rainy"
 
 def save_game(filename, game_state):
@@ -26,8 +28,8 @@ def load_game(filename):
         print(f"No saved game found with the name {filename}")
         return None
 
-def check_exist_game():
-    if os.path.exists('game_save.json'):
+def check_exist_game(json_file_name):
+    if os.path.exists(json_file_name):
         load_option = input("A saved game was found. Do you want to load it? (yes/no): ")
         if load_option.lower() == 'yes':
             loaded_game_state = load_game('game_save.json')
