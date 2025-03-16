@@ -10,10 +10,17 @@ This is an attempt to make a kind of Lemon Stand in Python using only the consol
 6. If you want to exit the game, just type `exit` when asked for a command
 
 
+## Save and Load Game
+
+The Game Saves automatically every time you finish a Level. 
+
+If you want to load a saved game, just run the `start.py` file and type `yes` when asked for a command.
+
+
 ## Upcoming features
 
-- [ ] Add a way to save the game
-- [ ] Add a way to load a saved game
+- [x] Add a way to save the game
+- [x] Add a way to load a saved game
 - [ ] Add a way to buy more ingredients
 - [ ] Add a way to buy more stands
 - [ ] Add a way to buy advertising
