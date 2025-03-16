@@ -70,15 +70,19 @@ while True:
     if lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['Normal_Price']:
         customers = random.randrange(29, 129)
         profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
+
     elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_1']:
         customers = random.randrange(19, 98)
         profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
+
     elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_2']:
         customers = random.randrange(13, 68)
         profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
+
     elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_3']:
         customers = random.randrange(9, 48)
         profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
+
     else:
         customers = random.randrange(1, 8)
         profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
