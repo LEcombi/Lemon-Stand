@@ -1,7 +1,5 @@
-import random
+
 import time
-import json
-import os
 from storage import *
 
 # Initial game state
@@ -10,10 +8,12 @@ game_state = {
     'Rainy': 0.76,
     'Level': 1,
     'Money': 100,
+    'complete_usury': 10,
     'Normal_Price': 0.89 * 2.8,
     'usury_price_1': 0.89 * 3.8,
     'usury_price_2': 0.89 * 4.8,
     'usury_price_3': 0.89 * 5.8,
+    'Price_per_advertising_sign': 15,
     'New_Price': "False",
     'Weather': set_weather()
 }
@@ -35,6 +35,10 @@ while True:
     if Number2 < 1:
         game_state['lemonade_Buying_Price'] *= 2
         game_state['New_Price'] = "True"
+        game_state['usury_price_1'] = game_state['lemonade_Buying_Price'] * 3.8
+        game_state['Normal_Price'] = game_state['lemonade_Buying_Price'] * 2.8
+        game_state['usury_price_2'] = game_state['lemonade_Buying_Price'] * 4.8
+        game_state['usury_price_3'] = game_state['lemonade_Buying_Price'] * 4.8
 
     if game_state['New_Price'] == "True":
         print("The price of the lemonade has changed!")
@@ -68,6 +72,10 @@ while True:
     except ValueError:
         print("Please enter a valid number.")
         continue
+
+    if lemonade_Selling_Price < game_state['complete_usury'] or lemonade_Selling_Price == game_state['complete_usury']:
+        customers = 0
+        profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
     if game_state['Weather'] == "Sunny":
         if lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['Normal_Price']:
@@ -133,6 +141,7 @@ while True:
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
     New_Money = game_state['Money'] + profit
+    profit =None
 
     print(f"------------------{RED}Invoice{RESET}-------------------")
     print(f"You sold {BLUE}{customers}{RESET} lemonades")
