@@ -2,6 +2,15 @@ import random
 import json
 import os
 
+RED = '\033[91m'
+GREEN = '\033[92m'
+YELLOW = '\033[93m'
+BLUE = '\033[94m'
+MAGENTA = '\033[95m'
+CYAN = '\033[96m'
+WHITE = '\033[97m'
+RESET = "\033[0m"
+
 def set_weather():
     Number = random.randrange(1, 100)
     if Number > 50 or Number == 50:
@@ -23,6 +32,15 @@ def load_game(filename):
         with open(filename, 'r') as f:
             game_state = json.load(f)
         print(f"Game loaded from {filename}")
+        return game_state
+    except FileNotFoundError:
+        print(f"No saved game found with the name {filename}")
+        return None
+
+def load_game_levels(filename):
+    try:
+        with open(filename, 'r') as f:
+            game_state = json.load(f)
         return game_state
     except FileNotFoundError:
         print(f"No saved game found with the name {filename}")

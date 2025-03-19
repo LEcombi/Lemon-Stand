@@ -1,47 +1,13 @@
-import subprocess
+from storage import load_game_levels, save_game
+from Game import Invoice
+from storage import RED, BLUE, RESET
+import random
 import time
-from storage import *
 
-# Initial game state
-game_state = {
-    'lemonade_Buying_Price': 0.89,
-    'Rainy': 0.76,
-    'Level': 1,
-    'Money': 100,
-    'complete_usury': 10,
-    'Normal_Price': 0.89 * 2.8,
-    'usury_price_1': 0.89 * 3.8,
-    'usury_price_2': 0.89 * 4.8,
-    'usury_price_3': 0.89 * 5.8,
-    'Price_per_advertising_sign': 15,
-    'New_Price': "False",
-    'Weather': set_weather()
-}
+game_state = load_game_levels('../game_save.json')
 
-
-def Invoice(customers, profit, New_Money, game_state):
-    print(f"------------------{RED}Invoice{RESET}-------------------")
-    print(f"You sold {BLUE}{customers}{RESET} lemonades")
-    print(f"Your profit is {BLUE}{profit}{RESET}")
-    print(f"That was level {BLUE}{game_state['Level']}{RESET}")
-    print(f"Your new account balance is {BLUE}{New_Money}{RESET}")
-    print("--------------------------------------------")
-
-
-RED = '\033[91m'
-GREEN = '\033[92m'
-YELLOW = '\033[93m'
-BLUE = '\033[94m'
-MAGENTA = '\033[95m'
-CYAN = '\033[96m'
-WHITE = '\033[97m'
-RESET = "\033[0m"
-
-check_exist_game("game_save.json")
 
 while True:
-    if game_state['Level'] < 6:
-        subprocess.run(["python", "Levels/6-12.py"])
     Number2 = random.randrange(0, 10)
     if Number2 < 1:
         game_state['lemonade_Buying_Price'] *= 2
@@ -90,68 +56,69 @@ while True:
 
     if game_state['Weather'] == "Sunny":
         if lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['Normal_Price']:
-            customers = random.randrange(29, 129)
+            customers = random.randrange(39, 169)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_1']:
-            customers = random.randrange(19, 98)
+            customers = random.randrange(29, 122)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_2']:
-            customers = random.randrange(13, 68)
+            customers = random.randrange(22, 82)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_3']:
-            customers = random.randrange(9, 48)
+            customers = random.randrange(16, 72)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         else:
-            customers = random.randrange(1, 8)
+            customers = random.randrange(3, 13)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
     if game_state['Weather'] == "Slightly cloudy":
         if lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['Normal_Price']:
-            customers = random.randrange(25, 176)
+            customers = random.randrange(35, 201)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_1']:
-            customers = random.randrange(15, 122)
+            customers = random.randrange(26, 152)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_2']:
-            customers = random.randrange(9, 102)
+            customers = random.randrange(19, 122)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_3']:
-            customers = random.randrange(5, 65)
+            customers = random.randrange(11, 85)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         else:
-            customers = random.randrange(1, 12)
+            customers = random.randrange(3, 13)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
     if game_state['Weather'] == "Rainy":
         if lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['Normal_Price']:
-            customers = random.randrange(15, 68)
+            customers = random.randrange(19, 54)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_1']:
-            customers = random.randrange(5, 48)
+            customers = random.randrange(9, 74)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_2']:
-            customers = random.randrange(3, 38)
+            customers = random.randrange(8, 58)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         elif lemonade_Selling_Price - game_state['lemonade_Buying_Price'] < game_state['usury_price_3']:
-            customers = random.randrange(1, 28)
+            customers = random.randrange(7, 38)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
         else:
-            customers = random.randrange(1, 8)
+            customers = random.randrange(4, 19)
             profit = (lemonade_Selling_Price - game_state['lemonade_Buying_Price']) * customers
 
     New_Money = game_state['Money'] + profit
+
     profit =None
     Invoice(customers, profit, New_Money, game_state)
 
